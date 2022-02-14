@@ -23,12 +23,9 @@ jobs:
           aws-secret-access-key: CLEVER_CLOUD_CELLAR_KEY_SECRET_PROD
 
 workflows:
-  build_and_deploy_master:
+  deploy_main:
     jobs:
-      - build
-      - quality_checks
       - deploy_prod:
-          requires: [build, quality_checks]
           filters:
             branches:
-              only: master
+              only: main
