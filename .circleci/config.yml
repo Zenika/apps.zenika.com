@@ -1,0 +1,34 @@
+version: 2.1
+
+orbs:
+  s3: circleci/aws-s3@2.0.0
+
+jobs:
+
+  deploy_prod:
+    docker:
+      - image: cimg/python:3.9
+    environment:
+      AWS_REGION: eu-west-3 # required by s3 orb even though Cellar does not need it
+    steps:
+      - attach_workspace:
+          at: ./
+      - s3/sync:
+          from: .
+          to: s3://apps.zenika.com
+          arguments: |
+            --acl public-read \
+            --endpoint-url https://cellar-c2.services.clever-cloud.com
+          aws-access-key-id: CLEVER_CLOUD_CELLAR_KEY_ID_PROD
+          aws-secret-access-key: CLEVER_CLOUD_CELLAR_KEY_SECRET_PROD
+
+workflows:
+  build_and_deploy_master:
+    jobs:
+      - build
+      - quality_checks
+      - deploy_prod:
+          requires: [build, quality_checks]
+          filters:
+            branches:
+              only: master
