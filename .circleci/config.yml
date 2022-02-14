@@ -11,8 +11,7 @@ jobs:
     environment:
       AWS_REGION: eu-west-3 # required by s3 orb even though Cellar does not need it
     steps:
-      - attach_workspace:
-          at: ./
+      - checkout
       - s3/sync:
           from: public
           to: s3://apps.zenika.com
