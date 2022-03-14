@@ -58,6 +58,12 @@ a {
   font-size: 300%;
 }
 
+.app-main-link:hover {
+  background: var(--link-hover-background-color);
+  transition: var(--link-hover-background-color-transition);
+  border-radius: var(--default-border-radius);
+}
+
 .app-main-link > * {
   width: 100%;
   flex: 0;
@@ -77,6 +83,12 @@ a {
   display: flex;
   justify-content: center;
   height: 1.5em;
+}
+
+.app footer:hover {
+  background: var(--link-hover-background-color);
+  transition: var(--link-hover-background-color-transition);
+  border-radius: var(--default-border-radius);
 }
 
 .app footer img {
