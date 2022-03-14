@@ -30,86 +30,55 @@ a {
 }
 
 #logo {
-  flex: 1 1;
-  min-width: 33%;
-  max-width: 1000px;
-  min-height: 1em;
-  max-height: 33%;
   box-sizing: border-box;
-  margin: 5%;
-  display: flex;
-  justify-content: center;
-}
-
-#logo img {
-  max-width: 100%;
+  width: 100%;
+  max-width: 600px;
 }
 
 #apps {
-  flex: 2 0;
-  min-width: 66%;
-  max-width: 66%;
   display: flex;
   flex-wrap: wrap;
-  text-align: center;
   justify-content: center;
 }
 
 .app {
-  display: flex;
-  flex-direction: column;
-  margin: 1em;
   background-color: white;
   box-shadow: var(--default-box-shadow);
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main-link {
+  padding: 10px;
+  height: 100%;
+  display: flex;
   justify-content: center;
-  min-width: 10em;
+  align-items: center;
+  font-size: 300%;
+}
+
+.app-main-link > * {
+  width: 100%;
+  flex: 0;
+}
+
+.app-main-link img {
+  height: 100px;
 }
 
 .app header {
-  box-shadow: var(--default-box-shadow);
-  padding: 1em;
-}
-
-.app main {
-  flex: 1;
-}
-
-.app main a {
-  width: 100%;
-  height: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
-}
-
-.app main a:hover {
-  background: var(--link-hover-background-color);
-  transition: var(--link-hover-background-color-transition);
-}
-
-.app main img {
-  height: 3em;
-  margin: 1em 2em;
+  padding: 0.5em;
 }
 
 .app footer {
   display: flex;
-  flex-direction: row;
-  box-shadow: var(--default-box-shadow);
-}
-
-.app footer a {
-  flex: 1;
-  display: flex;
   justify-content: center;
-}
-
-.app footer a:hover {
-  background: var(--link-hover-background-color);
-  transition: var(--link-hover-background-color-transition);
+  height: 1.5em;
 }
 
 .app footer img {
-  max-height: 1em;
-  margin: 0.5em;
+  height: 80%;
 }
