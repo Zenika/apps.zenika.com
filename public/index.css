@@ -1,8 +1,10 @@
 :root {
-  --color-black: #000;
-  --color-grey: #eceff1;
+  --color-black: #121212;
+  --color-white: white;
   --color-light-grey: #f7f7f7;
-
+  --small-padding: 10px;
+  --large-padding: 20px;
+  --default-border-radius: 10px;
   --default-box-shadow: 0 0 3px rgb(0 0 0 / 10%);
 
   --body-brackground-color: var(--color-black);
@@ -42,15 +44,16 @@ a {
 }
 
 .app {
-  background-color: white;
+  background-color: var(--color-white);
   box-shadow: var(--default-box-shadow);
+  border-radius: var(--default-border-radius);
   margin: 1em;
   display: flex;
   flex-direction: column;
 }
 
 .app-main-link {
-  padding: 10px;
+  padding: var(--large-padding);
   height: 100%;
   display: flex;
   justify-content: center;
@@ -76,13 +79,14 @@ a {
 .app header {
   display: flex;
   justify-content: center;
-  padding: 0.5em;
+  padding: var(--small-padding);
 }
 
 .app footer {
   display: flex;
   justify-content: center;
   height: 1.5em;
+  padding: var(--small-padding);
 }
 
 .app footer:hover {
