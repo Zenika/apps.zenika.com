@@ -16,3 +16,9 @@ The `main` branch is automatically deployed to production.
 
 To *temporarily* deploy another branch, on said branch, modify the filters of
 the `deploy_prod` job of the `deploy_main` workflow in `.circleci/config.yml`.
+
+## Why is `public/resources/images/email_signature/zenika_logo.png` not in `img`?
+
+This is to preserve compatibility with current email signatures. It will only be
+able to be moved or removed once most signatures have been updated to another
+URL.
