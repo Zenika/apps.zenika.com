@@ -4,7 +4,6 @@ orbs:
   s3: circleci/aws-s3@2.0.0
 
 jobs:
-
   deploy_prod:
     docker:
       - image: cimg/python:3.9
@@ -18,13 +17,14 @@ jobs:
           arguments: |
             --acl public-read \
             --endpoint-url https://cellar-c2.services.clever-cloud.com
-          aws-access-key-id: CLEVER_CLOUD_CELLAR_KEY_ID_PROD
-          aws-secret-access-key: CLEVER_CLOUD_CELLAR_KEY_SECRET_PROD
+          aws-access-key-id: S3_CLIENT_ID
+          aws-secret-access-key: S3_CLIENT_SECRET
 
 workflows:
   deploy_main:
     jobs:
       - deploy_prod:
+          context: apps-zenika
           filters:
             branches:
               only: main
