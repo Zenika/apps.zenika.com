@@ -6,7 +6,7 @@ jobs:
       - image: cimg/base:current
     steps:
       - checkout
-      - run: sudo apt-get install s3cmd
+      - run: sudo apt-get update && sudo apt-get install -y s3cmd
       - run: touch s3cfg
       - run: |
           cat \<<EOF > s3cfg
