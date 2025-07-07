@@ -9,7 +9,7 @@ jobs:
       - run: sudo apt-get install s3cmd
       - run: touch s3cfg
       - run: |
-          cat <<EOF > s3cfg
+          cat \<<EOF > s3cfg
           access_key = $S3_CLIENT_ID
           secret_key = $S3_CLIENT_SECRET
           bucket_location = US
