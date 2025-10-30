@@ -1,102 +1,165 @@
 :root {
-  --color-black: #121212;
-  --color-white: white;
   --color-zenika: #aa0000;
-  --color-light-grey: #ddd;
-  --small-padding: max(.5rem, 1vw);
-  --large-padding: max(1rem, 2vw);
-  --default-border-radius: .5rem;
+  --bg-interface: #eee;
+  --bg-card: white;
+  --bg-card-footer: #f9f9f9;
+  --border-card: #ccc;
+  --border-footer: #ddd;
 
-  --app-main-link-image-height: min(4rem, 15vw);
-  --body-brackground-color: var(--color-black);
-  --link-hover-background-color: var(--color-light-grey);
-  --link-hover-background-color-transition: background-color 0.3s ease-in-out;
+  color-scheme: light dark;
 }
 
-* { outline-color: transparent; }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-interface: #121212;
+    --bg-card: #222;
+    --bg-card-footer: #1a1a1a;
+    --border-card: #444;
+    --border-footer: #333;
+  }
+}
+
+* {
+  outline-color: transparent;
+  margin: 0;
+  padding: 0;
+}
 
 body {
-  background-color: var(--body-brackground-color);
+  background-color: var(--bg-interface);
   font: 1rem Arial, Helvetica, sans-serif;
 }
 
-h2 {
-  margin: unset;
-  font-size: unset;
-  font-weight: unset;
+main {
+  max-width: min(150ch, calc(100% - 2rem));
+  margin: 0 auto 3rem;
 }
 
 h1 {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 600px;
-}
-
-main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-article {
-  background-color: var(--color-white);
-  border-radius: var(--default-border-radius);
-  margin: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-
-article:focus-within {
-  outline: 3px solid var(--color-zenika);
-  outline-offset: .25rem;
-}
-
-a {
-  text-decoration: unset;
-  padding: var(--large-padding);
-  height: 100%;
+  margin: 1.5em auto 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 3rem;
+  gap: 0.5ch;
+
+  sub {
+    transform: translateY(1em);
+    font-size: 0.5em;
+  }
+
+  img {
+    height: 4rem;
+    width: auto;
+  }
 }
 
-a:focus {
-  outline: none;
+ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(33ch, 1fr));
+  gap: 1rem;
+
+  li {
+    list-style: none;
+  }
 }
 
-a:hover, a:active, a:focus {
-  background: var(--link-hover-background-color);
-  transition: var(--link-hover-background-color-transition);
-  border-radius: var(--default-border-radius);
+h2 {
+  font-size: 1.75rem;
+  margin-block: 1.25em 0.5em;
 }
 
-a img {
-  height: var(--app-main-link-image-height);
-}
-
-article header {
-  display: flex;
-  justify-content: center;
-  padding: var(--small-padding);
-}
-
-article footer {
-  display: flex;
-  justify-content: center;
-}
-
-article footer img {
+article {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-card);
   height: 100%;
-}
 
-article footer a {
-  flex: 1;
-  padding: var(--small-padding);
-  height: 1.25rem;
-}
+  a {
+    color: inherit;
+    text-decoration: none;
 
-@media (max-width: 33rem) {
-  main { justify-content: stretch; }
-  article { flex: 1; }
+    &:focus-visible {
+      outline: 3px solid var(--color-zenika);
+    }
+
+    :is(h3, p) {
+      text-decoration: underline;
+      text-decoration-color: transparent;
+      text-underline-offset: 0;
+      transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+
+      a:hover & {
+        text-decoration-color: currentColor;
+        text-underline-offset: 0.15em;
+      }
+    }
+  }
+
+  > a {
+    background: var(--bg-card);
+    display: flex;
+    align-items: center;
+    outline-offset: -1ch;
+    padding: 1rem;
+    gap: 0.5em;
+    font-size: 1.25rem;
+
+    img,
+    i {
+      width: 1.5em;
+      height: 1.2em;
+      object-fit: contain;
+      flex-shrink: 0;
+      font-size: 2em;
+    }
+
+    i {
+      line-height: 1.25;
+      font-style: normal;
+      text-align: center;
+    }
+  }
+
+  hgroup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.25em;
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  footer {
+    background: var(--bg-card-footer);
+    border-top: 1px solid var(--border-footer);
+    display: flex;
+    padding: 0.75rem;
+
+    a {
+      display: inline-flex;
+      gap: 0.5em;
+      align-items: center;
+      font-size: 0.875rem;
+      opacity: 0.9;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    img,
+    svg {
+      height: 1.25em;
+      width: 1.25em;
+      object-fit: contain;
+    }
+  }
 }
