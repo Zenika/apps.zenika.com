@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: cimg/base:current
     resource_class: small
-    
+
     steps:
       - checkout
       - run: sudo apt-get update && sudo apt-get install -y s3cmd
@@ -58,6 +58,6 @@ workflows:
     jobs:
       - deploy_prod:
           context: apps-zenika
-          filters:
-            branches:
-              only: main
+          # filters:
+          #   branches:
+          #     only: main
