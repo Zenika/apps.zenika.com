@@ -52,6 +52,16 @@ jobs:
           verbosity = WARNING
           EOF
       - run: s3cmd --config s3cfg sync public/ s3://apps.zenika.com --acl-public --host-bucket=cellar-c2.services.clever-cloud.com
+      - run: |
+          # Fix MIME types for CSS and other files to ensure correct Content-Type headers
+          s3cmd --config s3cfg --no-check-md5 modify --mime-type=text/css --host-bucket=cellar-c2.services.clever-cloud.com s3://apps.zenika.com/index.css || true
+          s3cmd --config s3cfg --no-check-md5 modify --mime-type=text/html --host-bucket=cellar-c2.services.clever-cloud.com s3://apps.zenika.com/index.html || true
+          s3cmd --config s3cfg --no-check-md5 modify --mime-type=text/plain --host-bucket=cellar-c2.services.clever-cloud.com s3://apps.zenika.com/robots.txt || true
+          # Fix SVG files individually
+          cd public
+          for svg in img/*.svg; do
+            s3cmd --config ../s3cfg --no-check-md5 modify --mime-type=image/svg+xml --host-bucket=cellar-c2.services.clever-cloud.com "s3://apps.zenika.com/${svg}" || true
+          done
 
 workflows:
   deploy_main:
